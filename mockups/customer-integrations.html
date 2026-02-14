@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Resolution — Integrations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' } } } }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); }
+        .tab-active { border-color: #0ea5e9; color: #0284c7; }
+        .screen { display: none; }
+        .screen.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+        <div class="p-6 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div>
+                <span class="text-lg font-bold text-slate-800">Resolve</span>
+            </div>
+        </div>
+        <div class="p-4 border-b border-slate-100">
+            <button class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 text-sm">
+                <div class="flex items-center gap-2"><i class="fas fa-building text-slate-400"></i><span class="font-medium text-slate-700">Acme Newsletter Co</span></div>
+                <i class="fas fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-4 space-y-1">
+            <a href="customer-overview.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-chart-line w-4 text-center"></i>Overview</a>
+            <a href="customer-visitors.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-users w-4 text-center"></i>Visitors</a>
+            <a href="customer-integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-brand-50 text-brand-700 font-medium text-sm"><i class="fas fa-plug w-4 text-center"></i>Integrations</a>
+            <a href="customer-api-setup.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-key w-4 text-center"></i>API & Setup</a>
+            <a href="customer-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-cog w-4 text-center"></i>Settings</a>
+        </nav>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5"><span>Credits used</span><span class="font-medium text-slate-700">8,560 / 10,000</span></div>
+            <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-brand-500 h-1.5 rounded-full" style="width: 85.6%"></div></div>
+        </div>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center"><span class="text-brand-700 text-xs font-bold">JD</span></div>
+                <div class="flex-1 min-w-0"><p class="text-sm font-medium text-slate-700 truncate">Jane Doe</p><p class="text-xs text-slate-400 truncate">jane@acmenewsletter.com</p></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-8">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Integrations</h1>
+                <p class="text-slate-500 mt-1">Connect your CRM, email platform, or webhook to receive resolved visitor data</p>
+            </div>
+            <button class="px-4 py-2 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition flex items-center gap-2">
+                <i class="fas fa-plus"></i>
+                Add Integration
+            </button>
+        </div>
+
+        <!-- Tabs: Connected | Available | Logs -->
+        <div class="border-b border-slate-200 mb-6">
+            <nav class="flex gap-6">
+                <button class="pb-3 text-sm font-medium border-b-2 tab-active" onclick="showScreen('connected')">Connected (3)</button>
+                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('available')">Available</button>
+                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('logs')">Delivery Logs</button>
+            </nav>
+        </div>
+
+        <!-- Connected Integrations -->
+        <div id="screen-connected" class="screen active">
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Salesforce -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                <i class="fab fa-salesforce text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-semibold text-slate-900">Salesforce</h3>
+                                    <span class="flex items-center gap-1 text-xs text-green-600 font-medium"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Connected</span>
+                                </div>
+                                <p class="text-sm text-slate-500">Automatically create/update contacts when visitors are resolved</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-slate-800">4,231</p>
+                                <p class="text-xs text-slate-400">contacts synced</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-green-600">99.2%</p>
+                                <p class="text-xs text-slate-400">success rate</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HubSpot -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                                <i class="fab fa-hubspot text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-semibold text-slate-900">HubSpot</h3>
+                                    <span class="flex items-center gap-1 text-xs text-green-600 font-medium"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Connected</span>
+                                </div>
+                                <p class="text-sm text-slate-500">Push resolved identities to HubSpot contacts</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-slate-800">3,847</p>
+                                <p class="text-xs text-slate-400">contacts synced</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-green-600">98.7%</p>
+                                <p class="text-xs text-slate-400">success rate</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Webhook -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-globe text-slate-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-semibold text-slate-900">Webhook</h3>
+                                    <span class="flex items-center gap-1 text-xs text-amber-600 font-medium"><span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>Degraded</span>
+                                </div>
+                                <p class="text-sm text-slate-500">https://api.acmenewsletter.com/webhooks/resolve</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-slate-800">2,104</p>
+                                <p class="text-xs text-slate-400">events sent</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-medium text-amber-600">94.1%</p>
+                                <p class="text-xs text-slate-400">success rate</p>
+                            </div>
+                            <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-3">
+                        <i class="fas fa-exclamation-triangle text-amber-500"></i>
+                        <p class="text-sm text-amber-700">Elevated error rate in the last 2 hours. 12 deliveries failed with timeout. <a href="#" class="underline font-medium">View logs →</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Available Integrations -->
+        <div id="screen-available" class="screen">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fab fa-salesforce text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Salesforce</h3>
+                    <p class="text-sm text-slate-500 mb-4">Sync resolved contacts to Salesforce CRM</p>
+                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fab fa-hubspot text-orange-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">HubSpot</h3>
+                    <p class="text-sm text-slate-500 mb-4">Push identities to HubSpot contacts</p>
+                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">ActiveCampaign</h3>
+                    <p class="text-sm text-slate-500 mb-4">Add resolved visitors as contacts</p>
+                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-envelope text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Mailchimp</h3>
+                    <p class="text-sm text-slate-500 mb-4">Sync to Mailchimp audiences</p>
+                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-paper-plane text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Klaviyo</h3>
+                    <p class="text-sm text-slate-500 mb-4">Send to Klaviyo profiles</p>
+                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-globe text-slate-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Webhook</h3>
+                    <p class="text-sm text-slate-500 mb-4">Send JSON payloads to any endpoint</p>
+                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-pink-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Segment</h3>
+                    <p class="text-sm text-slate-500 mb-4">Forward to Segment as identify events</p>
+                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fab fa-shopify text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 mb-1">Shopify</h3>
+                    <p class="text-sm text-slate-500 mb-4">Enrich Shopify customer profiles</p>
+                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
+                </div>
+                <div class="bg-white rounded-xl border border-dashed border-slate-300 p-6 flex flex-col items-center justify-center text-center hover:border-brand-300 transition cursor-pointer group">
+                    <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-50">
+                        <i class="fas fa-plus text-slate-400 group-hover:text-brand-500 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-700 mb-1">Custom Integration</h3>
+                    <p class="text-sm text-slate-400">Use our API to build your own</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Logs -->
+        <div id="screen-logs" class="screen">
+            <!-- Summary stats -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <p class="text-xs text-slate-500 mb-1">Total Deliveries</p>
+                    <p class="text-2xl font-bold text-slate-900">10,182</p>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <p class="text-xs text-slate-500 mb-1">Success Rate</p>
+                    <p class="text-2xl font-bold text-green-600">97.3%</p>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <p class="text-xs text-slate-500 mb-1">Failed</p>
+                    <p class="text-2xl font-bold text-red-600">275</p>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4">
+                    <p class="text-xs text-slate-500 mb-1">Avg Latency</p>
+                    <p class="text-2xl font-bold text-slate-900">142ms</p>
+                </div>
+            </div>
+
+            <!-- Log table -->
+            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-slate-100 bg-slate-50/50">
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Timestamp</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Integration</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Visitor</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Status</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Latency</th>
+                            <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Response</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-3 text-sm text-slate-500">Feb 14, 2:34 PM</td>
+                            <td class="px-6 py-3"><span class="flex items-center gap-2 text-sm"><i class="fab fa-salesforce text-blue-600"></i>Salesforce</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-600">mike.chen@gmail.com</td>
+                            <td class="px-6 py-3"><span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full">201 Created</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-500">89ms</td>
+                            <td class="px-6 py-3"><button class="text-xs text-brand-600 hover:underline">View</button></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-3 text-sm text-slate-500">Feb 14, 2:34 PM</td>
+                            <td class="px-6 py-3"><span class="flex items-center gap-2 text-sm"><i class="fab fa-hubspot text-orange-600"></i>HubSpot</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-600">mike.chen@gmail.com</td>
+                            <td class="px-6 py-3"><span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full">200 OK</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-500">124ms</td>
+                            <td class="px-6 py-3"><button class="text-xs text-brand-600 hover:underline">View</button></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 bg-red-50/30">
+                            <td class="px-6 py-3 text-sm text-slate-500">Feb 14, 2:30 PM</td>
+                            <td class="px-6 py-3"><span class="flex items-center gap-2 text-sm"><i class="fas fa-globe text-slate-600"></i>Webhook</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-600">sarah.j@company.co</td>
+                            <td class="px-6 py-3"><span class="text-xs bg-red-50 text-red-700 px-2 py-1 rounded-full">Timeout</span></td>
+                            <td class="px-6 py-3 text-sm text-red-500">30,000ms</td>
+                            <td class="px-6 py-3"><button class="text-xs text-brand-600 hover:underline">View</button></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-3 text-sm text-slate-500">Feb 14, 2:28 PM</td>
+                            <td class="px-6 py-3"><span class="flex items-center gap-2 text-sm"><i class="fab fa-salesforce text-blue-600"></i>Salesforce</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-600">alex.kim@hotmail.com</td>
+                            <td class="px-6 py-3"><span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full">200 OK</span></td>
+                            <td class="px-6 py-3 text-sm text-slate-500">95ms</td>
+                            <td class="px-6 py-3"><button class="text-xs text-brand-600 hover:underline">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>

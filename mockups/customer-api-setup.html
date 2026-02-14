@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Resolution — API & Setup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' } } } }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+        <div class="p-6 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div>
+                <span class="text-lg font-bold text-slate-800">Resolve</span>
+            </div>
+        </div>
+        <div class="p-4 border-b border-slate-100">
+            <button class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 text-sm">
+                <div class="flex items-center gap-2"><i class="fas fa-building text-slate-400"></i><span class="font-medium text-slate-700">Acme Newsletter Co</span></div>
+                <i class="fas fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-4 space-y-1">
+            <a href="customer-overview.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-chart-line w-4 text-center"></i>Overview</a>
+            <a href="customer-visitors.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-users w-4 text-center"></i>Visitors</a>
+            <a href="customer-integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-plug w-4 text-center"></i>Integrations</a>
+            <a href="customer-api-setup.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-brand-50 text-brand-700 font-medium text-sm"><i class="fas fa-key w-4 text-center"></i>API & Setup</a>
+            <a href="customer-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-cog w-4 text-center"></i>Settings</a>
+        </nav>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5"><span>Credits used</span><span class="font-medium text-slate-700">8,560 / 10,000</span></div>
+            <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-brand-500 h-1.5 rounded-full" style="width: 85.6%"></div></div>
+        </div>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center"><span class="text-brand-700 text-xs font-bold">JD</span></div>
+                <div class="flex-1 min-w-0"><p class="text-sm font-medium text-slate-700 truncate">Jane Doe</p><p class="text-xs text-slate-400 truncate">jane@acmenewsletter.com</p></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-8">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-slate-900">API & Setup</h1>
+            <p class="text-slate-500 mt-1">Everything you need to get your identity resolution tag running</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Left: Main content -->
+            <div class="col-span-2 space-y-6">
+                <!-- API Keys -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                        <h3 class="font-semibold text-slate-900">API Keys</h3>
+                        <button class="px-3 py-1.5 text-sm font-medium text-brand-600 hover:bg-brand-50 rounded-lg transition flex items-center gap-1.5">
+                            <i class="fas fa-plus text-xs"></i>
+                            Generate New Key
+                        </button>
+                    </div>
+                    <div class="divide-y divide-slate-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <p class="text-sm font-medium text-slate-800">Production</p>
+                                    <span class="text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full font-medium">Active</span>
+                                </div>
+                                <p class="text-sm text-slate-500 font-mono mt-1">idr_live_8f3k2j5h•••••••••</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg" title="Copy"><i class="fas fa-copy"></i></button>
+                                <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg" title="Reveal"><i class="fas fa-eye"></i></button>
+                                <button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg" title="Revoke"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <p class="text-sm font-medium text-slate-800">Test / Sandbox</p>
+                                    <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-medium">Test</span>
+                                </div>
+                                <p class="text-sm text-slate-500 font-mono mt-1">idr_test_9g4m3n7p•••••••••</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg"><i class="fas fa-copy"></i></button>
+                                <button class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JavaScript Tag -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-slate-900">JavaScript Tag</h3>
+                            <p class="text-sm text-slate-500 mt-1">Add this to your website's &lt;head&gt; to start collecting identity data</p>
+                        </div>
+                        <button class="px-3 py-1.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition flex items-center gap-1.5">
+                            <i class="fas fa-copy text-xs"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-slate-900 text-slate-100 p-4 rounded-lg text-sm overflow-x-auto"><code><span class="text-slate-500">&lt;!-- Resolve Identity Tag --&gt;</span>
+<span class="text-green-400">&lt;script&gt;</span>
+  <span class="text-slate-400">(function() {</span>
+    <span class="text-purple-300">window</span>.<span class="text-blue-300">resolve</span> = <span class="text-purple-300">window</span>.<span class="text-blue-300">resolve</span> || {};
+    <span class="text-purple-300">window</span>.<span class="text-blue-300">resolve</span>.<span class="text-yellow-300">apiKey</span> = <span class="text-green-300">'idr_live_8f3k2j5h...'</span>;
+    <span class="text-purple-300">window</span>.<span class="text-blue-300">resolve</span>.<span class="text-yellow-300">endpoint</span> = <span class="text-green-300">'https://api.idresolution.ai/v1/ingest'</span>;
+    
+    <span class="text-slate-500">// Auto-capture page views and form submissions</span>
+    <span class="text-purple-300">var</span> s = <span class="text-purple-300">document</span>.<span class="text-blue-300">createElement</span>(<span class="text-green-300">'script'</span>);
+    s.<span class="text-yellow-300">src</span> = <span class="text-green-300">'https://cdn.idresolution.ai/resolve.min.js'</span>;
+    s.<span class="text-yellow-300">async</span> = <span class="text-orange-300">true</span>;
+    <span class="text-purple-300">document</span>.<span class="text-blue-300">head</span>.<span class="text-blue-300">appendChild</span>(s);
+  <span class="text-slate-400">})();</span>
+<span class="text-green-400">&lt;/script&gt;</span></code></pre>
+                    </div>
+                </div>
+
+                <!-- Webhook Configuration -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">Webhook Configuration</h3>
+                        <p class="text-sm text-slate-500 mt-1">Receive real-time POST notifications when visitors are resolved</p>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Webhook URL</label>
+                            <input type="text" value="https://api.acmenewsletter.com/webhooks/resolve" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Secret Key (for signature verification)</label>
+                            <div class="flex gap-2">
+                                <input type="password" value="whsec_8f3k2j5h9m4n7p..." class="flex-1 px-3 py-2 border border-slate-200 rounded-lg text-sm">
+                                <button class="px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50"><i class="fas fa-eye"></i></button>
+                                <button class="px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-600 hover:bg-slate-50"><i class="fas fa-sync"></i></button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <button class="px-4 py-2 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition">Save Changes</button>
+                            <button class="px-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition flex items-center gap-2">
+                                <i class="fas fa-flask"></i>
+                                Send Test Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Quick Help -->
+            <div class="space-y-6">
+                <!-- Test Tool -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">🧪 Test Your Setup</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-slate-500 mb-4">Send a test event to verify your tag is working correctly.</p>
+                        <button class="w-full px-4 py-3 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Test Event
+                        </button>
+                        <div class="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex items-center gap-2 mb-1">
+                                <i class="fas fa-check-circle text-green-500"></i>
+                                <span class="text-sm font-medium text-green-800">Test passed!</span>
+                            </div>
+                            <p class="text-xs text-green-600">Event received and processed in 143ms</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">Tag Status</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-600">Tag installed</span>
+                            <span class="flex items-center gap-1.5 text-xs text-green-600 font-medium"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Active</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-600">Last event</span>
+                            <span class="text-sm text-slate-800 font-medium">2 min ago</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-600">Events today</span>
+                            <span class="text-sm text-slate-800 font-medium">1,247</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-600">Domains detected</span>
+                            <span class="text-sm text-slate-800 font-medium">acmenewsletter.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Docs Links -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <h3 class="font-semibold text-slate-900 mb-4">Documentation</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
+                            <i class="fas fa-book text-xs"></i>Getting Started Guide
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
+                            <i class="fas fa-code text-xs"></i>API Reference
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
+                            <i class="fas fa-shield-halved text-xs"></i>Webhook Signatures
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
+                            <i class="fas fa-question-circle text-xs"></i>FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

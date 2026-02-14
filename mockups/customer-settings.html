@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Resolution — Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' } } } }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); }
+        .tab-active { border-color: #0ea5e9; color: #0284c7; }
+        .screen { display: none; }
+        .screen.active { display: block; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+        <div class="p-6 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div>
+                <span class="text-lg font-bold text-slate-800">Resolve</span>
+            </div>
+        </div>
+        <div class="p-4 border-b border-slate-100">
+            <button class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 text-sm">
+                <div class="flex items-center gap-2"><i class="fas fa-building text-slate-400"></i><span class="font-medium text-slate-700">Acme Newsletter Co</span></div>
+                <i class="fas fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-4 space-y-1">
+            <a href="customer-overview.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-chart-line w-4 text-center"></i>Overview</a>
+            <a href="customer-visitors.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-users w-4 text-center"></i>Visitors</a>
+            <a href="customer-integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-plug w-4 text-center"></i>Integrations</a>
+            <a href="customer-api-setup.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 text-sm"><i class="fas fa-key w-4 text-center"></i>API & Setup</a>
+            <a href="customer-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-brand-50 text-brand-700 font-medium text-sm"><i class="fas fa-cog w-4 text-center"></i>Settings</a>
+        </nav>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5"><span>Credits used</span><span class="font-medium text-slate-700">8,560 / 10,000</span></div>
+            <div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-brand-500 h-1.5 rounded-full" style="width: 85.6%"></div></div>
+        </div>
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center"><span class="text-brand-700 text-xs font-bold">JD</span></div>
+                <div class="flex-1 min-w-0"><p class="text-sm font-medium text-slate-700 truncate">Jane Doe</p><p class="text-xs text-slate-400 truncate">jane@acmenewsletter.com</p></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-8">
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-slate-900">Settings</h1>
+            <p class="text-slate-500 mt-1">Manage your account, team, and billing</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="border-b border-slate-200 mb-6">
+            <nav class="flex gap-6">
+                <button class="pb-3 text-sm font-medium border-b-2 tab-active" onclick="showScreen('account')">Account</button>
+                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('team')">Team</button>
+                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('billing')">Billing</button>
+                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('notifications')">Notifications</button>
+            </nav>
+        </div>
+
+        <!-- Account Tab -->
+        <div id="screen-account" class="screen active">
+            <div class="max-w-2xl space-y-6">
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">Account Information</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Account Name</label>
+                            <input type="text" value="Acme Newsletter Co" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Account Slug</label>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-slate-400">resolve.app/</span>
+                                <input type="text" value="acme-newsletter" class="flex-1 px-3 py-2 border border-slate-200 rounded-lg text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Website</label>
+                            <input type="text" value="https://acmenewsletter.com" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm">
+                        </div>
+                        <div>
+                            <label class="text-sm font-medium text-slate-700 block mb-1.5">Industry</label>
+                            <select class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm text-slate-700">
+                                <option selected>Media & Publishing</option>
+                                <option>E-commerce</option>
+                                <option>SaaS / Technology</option>
+                                <option>Finance</option>
+                                <option>Healthcare</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <button class="px-4 py-2 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition">Save Changes</button>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="bg-white rounded-xl border border-red-200">
+                    <div class="p-6 border-b border-red-100">
+                        <h3 class="font-semibold text-red-600">Danger Zone</h3>
+                    </div>
+                    <div class="p-6 flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-800">Delete Account</p>
+                            <p class="text-sm text-slate-500">Permanently delete this account and all associated data</p>
+                        </div>
+                        <button class="px-4 py-2 border border-red-200 text-red-600 rounded-lg text-sm font-medium hover:bg-red-50 transition">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Tab -->
+        <div id="screen-team" class="screen">
+            <div class="max-w-3xl">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-semibold text-slate-900">Team Members</h3>
+                    <button class="px-4 py-2 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i>
+                        Invite Member
+                    </button>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-slate-100 bg-slate-50/50">
+                                <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Member</th>
+                                <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Role</th>
+                                <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Status</th>
+                                <th class="text-left px-6 py-3 text-xs font-medium text-slate-500 uppercase">Joined</th>
+                                <th class="text-right px-6 py-3 text-xs font-medium text-slate-500 uppercase"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50">
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center"><span class="text-brand-700 text-xs font-bold">JD</span></div>
+                                        <div>
+                                            <p class="text-sm font-medium text-slate-800">Jane Doe</p>
+                                            <p class="text-xs text-slate-400">jane@acmenewsletter.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded-full font-medium">Admin</span></td>
+                                <td class="px-6 py-4"><span class="text-xs text-green-600 font-medium">Active</span></td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Jan 15, 2026</td>
+                                <td class="px-6 py-4 text-right text-sm text-slate-400 italic">You</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"><span class="text-green-700 text-xs font-bold">BW</span></div>
+                                        <div>
+                                            <p class="text-sm font-medium text-slate-800">Bob Wilson</p>
+                                            <p class="text-xs text-slate-400">bob@acmenewsletter.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-medium">Integration Manager</span></td>
+                                <td class="px-6 py-4"><span class="text-xs text-green-600 font-medium">Active</span></td>
+                                <td class="px-6 py-4 text-sm text-slate-500">Feb 1, 2026</td>
+                                <td class="px-6 py-4 text-right"><button class="text-xs text-slate-400 hover:text-red-500"><i class="fas fa-ellipsis-v"></i></button></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center"><span class="text-slate-500 text-xs font-bold">?</span></div>
+                                        <div>
+                                            <p class="text-sm text-slate-500">dev@acmenewsletter.com</p>
+                                            <p class="text-xs text-slate-400">Pending invitation</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4"><span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full font-medium">Viewer</span></td>
+                                <td class="px-6 py-4"><span class="text-xs text-amber-600 font-medium">Pending</span></td>
+                                <td class="px-6 py-4 text-sm text-slate-400">Invited Feb 13</td>
+                                <td class="px-6 py-4 text-right"><button class="text-xs text-brand-600 hover:underline">Resend</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Tab -->
+        <div id="screen-billing" class="screen">
+            <div class="max-w-2xl space-y-6">
+                <!-- Current Plan -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold text-slate-900">Current Plan</h3>
+                            <p class="text-sm text-slate-500">You're on the <strong class="text-brand-600">Starter</strong> plan</p>
+                        </div>
+                        <button class="px-4 py-2 gradient-bg text-white rounded-lg text-sm font-medium hover:opacity-90 transition">Upgrade Plan</button>
+                    </div>
+                    <div class="p-6 grid grid-cols-3 gap-6">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Monthly Price</p>
+                            <p class="text-2xl font-bold text-slate-900">$99<span class="text-sm text-slate-400 font-normal">/mo</span></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Credits Included</p>
+                            <p class="text-2xl font-bold text-slate-900">10,000</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Next Billing</p>
+                            <p class="text-2xl font-bold text-slate-900">Mar 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credit Usage -->
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-semibold text-slate-900">Credit Usage (This Month)</h3>
+                        <span class="text-sm text-slate-500">Resets Mar 1</span>
+                    </div>
+                    <div class="mb-2 flex items-center justify-between text-sm">
+                        <span class="text-slate-600">8,560 of 10,000 credits used</span>
+                        <span class="font-medium text-amber-600">85.6%</span>
+                    </div>
+                    <div class="w-full bg-slate-100 rounded-full h-3 mb-4">
+                        <div class="bg-amber-500 h-3 rounded-full transition-all" style="width: 85.6%"></div>
+                    </div>
+                    <p class="text-xs text-slate-400">At current rate, you'll use ~9,800 credits this month. <a href="#" class="text-brand-600 hover:underline">Need more?</a></p>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                        <h3 class="font-semibold text-slate-900">Payment Method</h3>
+                        <button class="text-sm text-brand-600 font-medium hover:underline">Update</button>
+                    </div>
+                    <div class="p-6 flex items-center gap-4">
+                        <div class="w-12 h-8 bg-slate-100 rounded flex items-center justify-center">
+                            <i class="fab fa-cc-visa text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-slate-800">Visa ending in 4242</p>
+                            <p class="text-xs text-slate-400">Expires 12/2027</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div id="screen-notifications" class="screen">
+            <div class="max-w-2xl">
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">Notification Preferences</h3>
+                        <p class="text-sm text-slate-500">Choose what you want to be notified about</p>
+                    </div>
+                    <div class="divide-y divide-slate-50">
+                        <div class="p-6 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-800">Integration errors</p>
+                                <p class="text-sm text-slate-500">Get notified when an integration fails</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-brand-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-brand-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="p-6 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-800">Credit usage alerts</p>
+                                <p class="text-sm text-slate-500">Get notified at 80% and 95% credit usage</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-brand-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-brand-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="p-6 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-800">Weekly summary</p>
+                                <p class="text-sm text-slate-500">Receive a weekly email with your resolution stats</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-brand-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-brand-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </label>
+                        </div>
+                        <div class="p-6 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-800">New team member joins</p>
+                                <p class="text-sm text-slate-500">Get notified when invited members accept</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-brand-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-brand-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>

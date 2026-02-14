@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Resolution — Customer Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); }
+        .gradient-text { background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+<!-- Layout: Sidebar + Main -->
+<div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+        <!-- Logo -->
+        <div class="p-6 border-b border-slate-100">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+                    <i class="fas fa-bolt text-white text-sm"></i>
+                </div>
+                <span class="text-lg font-bold text-slate-800">Resolve</span>
+            </div>
+        </div>
+
+        <!-- Account Switcher -->
+        <div class="p-4 border-b border-slate-100">
+            <button class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 text-sm hover:bg-slate-100 transition">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-building text-slate-400"></i>
+                    <span class="font-medium text-slate-700 truncate">Acme Newsletter Co</span>
+                </div>
+                <i class="fas fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 p-4 space-y-1">
+            <a href="customer-overview.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-brand-50 text-brand-700 font-medium text-sm">
+                <i class="fas fa-chart-line w-4 text-center"></i>
+                Overview
+            </a>
+            <a href="customer-visitors.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm transition">
+                <i class="fas fa-users w-4 text-center"></i>
+                Visitors
+            </a>
+            <a href="customer-integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm transition">
+                <i class="fas fa-plug w-4 text-center"></i>
+                Integrations
+            </a>
+            <a href="customer-api-setup.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm transition">
+                <i class="fas fa-key w-4 text-center"></i>
+                API & Setup
+            </a>
+            <a href="customer-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm transition">
+                <i class="fas fa-cog w-4 text-center"></i>
+                Settings
+            </a>
+        </nav>
+
+        <!-- Credit Usage (sidebar footer) -->
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5">
+                <span>Credits used</span>
+                <span class="font-medium text-slate-700">8,560 / 10,000</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-1.5">
+                <div class="bg-brand-500 h-1.5 rounded-full" style="width: 85.6%"></div>
+            </div>
+        </div>
+
+        <!-- User -->
+        <div class="p-4 border-t border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center">
+                    <span class="text-brand-700 text-xs font-bold">JD</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-slate-700 truncate">Jane Doe</p>
+                    <p class="text-xs text-slate-400 truncate">jane@acmenewsletter.com</p>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-sign-out-alt text-sm"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-slate-900">Welcome back, Acme Newsletter Co</h1>
+            <p class="text-slate-500 mt-1">Here's what's happening with your identity resolution pipeline</p>
+        </div>
+
+        <!-- Getting Started Checklist (shows until completed) -->
+        <div class="bg-gradient-to-r from-brand-50 to-purple-50 border border-brand-200 rounded-xl p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                        <i class="fas fa-rocket text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900">Getting Started</h3>
+                        <p class="text-sm text-slate-500">Complete these steps to start resolving visitors</p>
+                    </div>
+                </div>
+                <span class="text-sm font-medium text-brand-600">2 of 4 complete</span>
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
+                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <span class="text-sm text-slate-600 line-through">Create account</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
+                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <span class="text-sm text-slate-600 line-through">Install JS tag</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-brand-300 ring-2 ring-brand-100">
+                    <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center flex-shrink-0 animate-pulse">
+                        <i class="fas fa-arrow-right text-white text-xs"></i>
+                    </div>
+                    <span class="text-sm text-slate-800 font-medium">First event received</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200">
+                    <div class="w-6 h-6 bg-slate-200 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-slate-400 text-xs">4</span>
+                    </div>
+                    <span class="text-sm text-slate-400">Connect integration</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-xl border border-slate-200 p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-slate-500">Visitors Resolved</span>
+                    <div class="w-8 h-8 bg-brand-50 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-users text-brand-500 text-sm"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold text-slate-900">12,847</p>
+                <div class="flex items-center gap-1 mt-2">
+                    <span class="text-green-600 text-sm font-medium"><i class="fas fa-arrow-up text-xs"></i> 12%</span>
+                    <span class="text-slate-400 text-sm">vs last month</span>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-slate-500">Match Rate</span>
+                    <div class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bullseye text-green-500 text-sm"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold text-slate-900">68.3%</p>
+                <div class="flex items-center gap-1 mt-2">
+                    <span class="text-green-600 text-sm font-medium"><i class="fas fa-arrow-up text-xs"></i> 2.3%</span>
+                    <span class="text-slate-400 text-sm">vs last month</span>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-slate-500">Events This Month</span>
+                    <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-purple-500 text-sm"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold text-slate-900">18,824</p>
+                <div class="flex items-center gap-1 mt-2">
+                    <span class="text-green-600 text-sm font-medium"><i class="fas fa-arrow-up text-xs"></i> 8%</span>
+                    <span class="text-slate-400 text-sm">vs last month</span>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl border border-slate-200 p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-medium text-slate-500">Integrations Active</span>
+                    <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-plug text-amber-500 text-sm"></i>
+                    </div>
+                </div>
+                <p class="text-3xl font-bold text-slate-900">3</p>
+                <div class="flex items-center gap-1 mt-2">
+                    <span class="text-slate-400 text-sm">Salesforce, HubSpot, Webhook</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-column: Activity + Quick Actions -->
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-xl border border-slate-200">
+                <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+                    <h3 class="font-semibold text-slate-900">Recent Activity</h3>
+                    <a href="customer-visitors.html" class="text-sm text-brand-600 hover:text-brand-700 font-medium">View all →</a>
+                </div>
+                <div class="divide-y divide-slate-50">
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-check text-green-600 text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-800">mike.chen@gmail.com <span class="text-slate-400">resolved</span></p>
+                            <p class="text-xs text-slate-400">Matched via email hash • 2 min ago</p>
+                        </div>
+                        <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">High confidence</span>
+                    </div>
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-share-nodes text-blue-600 text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-800">sarah.j@company.co <span class="text-slate-400">sent to Salesforce</span></p>
+                            <p class="text-xs text-slate-400">Integration delivery • 5 min ago</p>
+                        </div>
+                        <span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-medium">Delivered</span>
+                    </div>
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-check text-green-600 text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-800">alex.kim@hotmail.com <span class="text-slate-400">resolved</span></p>
+                            <p class="text-xs text-slate-400">Matched via fingerprint • 8 min ago</p>
+                        </div>
+                        <span class="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-full font-medium">Medium confidence</span>
+                    </div>
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-shield-halved text-red-600 text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-800">Unknown visitor <span class="text-slate-400">flagged as bot</span></p>
+                            <p class="text-xs text-slate-400">Fraud detection • 12 min ago</p>
+                        </div>
+                        <span class="text-xs bg-red-50 text-red-700 px-2 py-1 rounded-full font-medium">Blocked</span>
+                    </div>
+                    <div class="p-4 flex items-center gap-4 hover:bg-slate-50 transition">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-check text-green-600 text-xs"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm text-slate-800">taylor@startup.io <span class="text-slate-400">resolved</span></p>
+                            <p class="text-xs text-slate-400">Matched via email hash • 15 min ago</p>
+                        </div>
+                        <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">High confidence</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions + Integration Health -->
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-slate-200">
+                    <div class="p-6 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-900">Integration Health</h3>
+                    </div>
+                    <div class="divide-y divide-slate-50">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-salesforce text-blue-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-800">Salesforce</p>
+                                    <p class="text-xs text-slate-400">Last sync: 2 min ago</p>
+                                </div>
+                            </div>
+                            <span class="flex items-center gap-1.5 text-xs text-green-600 font-medium"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Healthy</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fab fa-hubspot text-orange-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-800">HubSpot</p>
+                                    <p class="text-xs text-slate-400">Last sync: 5 min ago</p>
+                                </div>
+                            </div>
+                            <span class="flex items-center gap-1.5 text-xs text-green-600 font-medium"><span class="w-2 h-2 bg-green-500 rounded-full"></span>Healthy</span>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-globe text-slate-600 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-slate-800">Webhook</p>
+                                    <p class="text-xs text-amber-500">Last sync: 2h ago — slow</p>
+                                </div>
+                            </div>
+                            <span class="flex items-center gap-1.5 text-xs text-amber-600 font-medium"><span class="w-2 h-2 bg-amber-500 rounded-full"></span>Degraded</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 p-6">
+                    <h3 class="font-semibold text-slate-900 mb-4">Quick Actions</h3>
+                    <div class="space-y-3">
+                        <a href="customer-visitors.html" class="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-brand-200 hover:bg-brand-50/50 transition group">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-download text-slate-400 group-hover:text-brand-500"></i>
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-brand-700">Export Resolved Visitors</span>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-300 group-hover:text-brand-400 text-sm"></i>
+                        </a>
+                        <a href="customer-integrations.html" class="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-brand-200 hover:bg-brand-50/50 transition group">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-plus text-slate-400 group-hover:text-brand-500"></i>
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-brand-700">Add Integration</span>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-300 group-hover:text-brand-400 text-sm"></i>
+                        </a>
+                        <a href="customer-api-setup.html" class="flex items-center justify-between p-3 rounded-lg border border-slate-200 hover:border-brand-200 hover:bg-brand-50/50 transition group">
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-code text-slate-400 group-hover:text-brand-500"></i>
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-brand-700">View Implementation Guide</span>
+                            </div>
+                            <i class="fas fa-arrow-right text-slate-300 group-hover:text-brand-400 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
