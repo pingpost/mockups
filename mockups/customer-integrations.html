@@ -67,13 +67,16 @@
             </button>
         </div>
 
-        <!-- Tabs: Connected | Available | Logs -->
-        <div class="border-b border-slate-200 mb-6">
-            <nav class="flex gap-6">
-                <button class="pb-3 text-sm font-medium border-b-2 tab-active" onclick="showScreen('connected')">Connected (3)</button>
-                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('available')">Available</button>
-                <button class="pb-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700" onclick="showScreen('logs')">Delivery Logs</button>
-            </nav>
+        <!-- Screen Selector (for mockup navigation) -->
+        <div class="bg-white border border-slate-200 rounded-lg px-4 py-2 mb-6 inline-flex items-center gap-2 text-sm">
+            <span class="text-slate-500">Viewing:</span>
+            <select id="screen-selector" class="border-0 text-sm font-medium text-slate-700 focus:ring-0 cursor-pointer" onchange="showScreen(this.value)">
+                <option value="connected">Connected Integrations</option>
+                <option value="available">Available Integrations</option>
+                <option value="logs">Delivery Logs</option>
+                <option value="quick-settings">Quick Settings (per-integration)</option>
+                <option value="power-mode">Power Mode (workflow builder)</option>
+            </select>
         </div>
 
         <!-- Connected Integrations -->
@@ -319,6 +322,433 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: Quick Settings (per-integration config) -->
+        <div id="screen-quick-settings" class="screen">
+            <div class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+                <a href="#" onclick="showScreen('connected'); return false;" class="hover:text-brand-600">Integrations</a>
+                <i class="fas fa-chevron-right text-xs text-slate-300"></i>
+                <span class="text-slate-800 font-medium">Klaviyo — Settings</span>
+            </div>
+
+            <div class="max-w-2xl">
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                    <!-- Header -->
+                    <div class="px-6 py-5 border-b border-slate-100">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-paper-plane text-indigo-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-lg font-semibold text-slate-900">Klaviyo</h3>
+                                    <span class="text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full font-medium"><i class="fas fa-check-circle mr-1"></i>Connected</span>
+                                </div>
+                                <p class="text-sm text-slate-500">Configure how contacts are sent</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Form -->
+                    <div class="px-6 py-5 space-y-5">
+                        <!-- List Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Which list should we add contacts to?</label>
+                            <select class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand-500">
+                                <option>📋 Website Leads (Recommended)</option>
+                                <option>📋 Newsletter Subscribers</option>
+                                <option>📋 High Intent Visitors</option>
+                                <option>📋 All Contacts</option>
+                                <option>+ Create new list...</option>
+                            </select>
+                        </div>
+
+                        <!-- Tags -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Tags to apply <span class="text-slate-400 font-normal">(optional)</span></label>
+                            <div class="flex flex-wrap gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl min-h-[48px]">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm bg-brand-100 text-brand-700">
+                                    resolve-enriched <button class="ml-1.5 text-brand-500 hover:text-brand-700">×</button>
+                                </span>
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-sm bg-purple-100 text-purple-700">
+                                    high-value <button class="ml-1.5 text-purple-500 hover:text-purple-700">×</button>
+                                </span>
+                                <input type="text" placeholder="Add tag..." class="flex-1 min-w-[100px] bg-transparent border-none text-sm focus:outline-none">
+                            </div>
+                        </div>
+
+                        <!-- Trigger Flow -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Trigger a flow when contacts arrive? <span class="text-slate-400 font-normal">(optional)</span></label>
+                            <select class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm">
+                                <option>Don't trigger a flow</option>
+                                <option>🚀 Welcome Series</option>
+                                <option>🎯 Lead Nurture Sequence</option>
+                                <option>💰 High Intent Follow-up</option>
+                                <option>📧 Re-engagement Campaign</option>
+                            </select>
+                        </div>
+
+                        <!-- Enrich Before Sending -->
+                        <div class="p-4 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border border-cyan-200">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-wand-magic-sparkles text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-slate-900">Enrich before sending</div>
+                                    <div class="text-xs text-slate-500">Validate and append data first</div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-cyan-300 transition">
+                                    <div class="flex items-center gap-2">
+                                        <input type="checkbox" checked class="w-4 h-4 text-cyan-600 rounded border-slate-300">
+                                        <span class="text-sm text-slate-700">Validate email</span>
+                                    </div>
+                                    <span class="text-xs text-slate-400">Included</span>
+                                </label>
+                                <label class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-cyan-300 transition">
+                                    <div class="flex items-center gap-2">
+                                        <input type="checkbox" class="w-4 h-4 text-cyan-600 rounded border-slate-300">
+                                        <span class="text-sm text-slate-700">Append phone number</span>
+                                    </div>
+                                    <span class="text-xs text-blue-600 font-medium">+1 credit</span>
+                                </label>
+                                <label class="flex items-center justify-between p-2.5 bg-white rounded-lg border border-slate-200 cursor-pointer hover:border-cyan-300 transition">
+                                    <div class="flex items-center gap-2">
+                                        <input type="checkbox" class="w-4 h-4 text-cyan-600 rounded border-slate-300">
+                                        <span class="text-sm text-slate-700">Enrich company data</span>
+                                    </div>
+                                    <span class="text-xs text-purple-600 font-medium">+2 credits</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Re-post Historical -->
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl">
+                            <div>
+                                <div class="font-medium text-slate-900 text-sm">Re-send historical contacts</div>
+                                <div class="text-xs text-slate-500">Re-post 12,847 previously identified contacts</div>
+                            </div>
+                            <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-brand-500 transition">
+                                <span class="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"></span>
+                            </button>
+                        </div>
+
+                        <!-- Field Mapping Preview -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Field Mapping</label>
+                            <div class="bg-slate-50 rounded-xl border border-slate-200 p-4 space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-500">email</span>
+                                    <i class="fas fa-arrow-right text-slate-300 text-xs"></i>
+                                    <span class="font-medium text-slate-700">$email</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-500">first_name</span>
+                                    <i class="fas fa-arrow-right text-slate-300 text-xs"></i>
+                                    <span class="font-medium text-slate-700">$first_name</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-500">last_name</span>
+                                    <i class="fas fa-arrow-right text-slate-300 text-xs"></i>
+                                    <span class="font-medium text-slate-700">$last_name</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-500">city</span>
+                                    <i class="fas fa-arrow-right text-slate-300 text-xs"></i>
+                                    <span class="font-medium text-slate-700">$city</span>
+                                </div>
+                                <button class="text-xs text-brand-600 font-medium hover:text-brand-700 mt-1"><i class="fas fa-edit mr-1"></i>Edit mapping</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                        <button onclick="showScreen('power-mode')" class="text-sm text-slate-500 hover:text-slate-700 transition flex items-center gap-1">
+                            <i class="fas fa-sliders"></i>
+                            Advanced / Power Mode
+                        </button>
+                        <div class="flex gap-3">
+                            <button onclick="showScreen('connected')" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900">Cancel</button>
+                            <button class="px-6 py-2 gradient-bg text-white text-sm font-medium rounded-lg hover:opacity-90 transition">Save & Start Processing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: Power Mode (workflow builder) -->
+        <div id="screen-power-mode" class="screen">
+            <div class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+                <a href="#" onclick="showScreen('connected'); return false;" class="hover:text-brand-600">Integrations</a>
+                <i class="fas fa-chevron-right text-xs text-slate-300"></i>
+                <a href="#" onclick="showScreen('quick-settings'); return false;" class="hover:text-brand-600">Klaviyo</a>
+                <i class="fas fa-chevron-right text-xs text-slate-300"></i>
+                <span class="text-slate-800 font-medium">Power Mode</span>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                <!-- Dark Header -->
+                <div class="px-6 py-4 bg-slate-900 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-white"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="font-semibold text-white">Klaviyo Integration</h3>
+                                <span class="text-xs bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full font-medium">
+                                    <i class="fas fa-bolt mr-1"></i>Power Mode
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-400">Advanced workflow builder</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button class="text-slate-400 hover:text-white transition text-sm"><i class="fas fa-question-circle mr-1"></i>Docs</button>
+                        <button onclick="showScreen('quick-settings')" class="text-slate-400 hover:text-white transition text-sm"><i class="fas fa-arrow-left mr-1"></i>Simple Mode</button>
+                    </div>
+                </div>
+
+                <!-- Workflow Canvas -->
+                <div class="p-8 bg-slate-50 min-h-[520px]">
+                    <div class="flex items-start gap-4 overflow-x-auto pb-4">
+
+                        <!-- Node 1: Trigger -->
+                        <div class="flex-shrink-0">
+                            <div class="w-64 bg-white rounded-xl border-2 border-green-400 shadow-sm overflow-hidden">
+                                <div class="px-4 py-2 bg-green-50 border-b border-green-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-white text-xs"></i></div>
+                                        <span class="text-sm font-semibold text-green-800">Trigger</span>
+                                    </div>
+                                    <button class="text-green-400 hover:text-green-600"><i class="fas fa-ellipsis-v text-xs"></i></button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-sm font-medium text-slate-700 mb-1">New Contact Enriched</div>
+                                    <div class="text-xs text-slate-500">When a visitor is identified and enriched with email</div>
+                                    <div class="mt-3">
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs bg-slate-100 text-slate-600">
+                                            <i class="fas fa-check-circle text-green-500 mr-1"></i>Active
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 flex items-center self-center mt-12">
+                            <div class="w-8 h-0.5 bg-slate-300"></div>
+                            <i class="fas fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Node 2: Validate & Enrich -->
+                        <div class="flex-shrink-0">
+                            <div class="w-64 bg-white rounded-xl border-2 border-cyan-400 shadow-sm overflow-hidden">
+                                <div class="px-4 py-2 bg-cyan-50 border-b border-cyan-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-cyan-500 rounded-lg flex items-center justify-center"><i class="fas fa-wand-magic-sparkles text-white text-xs"></i></div>
+                                        <span class="text-sm font-semibold text-cyan-800">Validate & Enrich</span>
+                                    </div>
+                                    <button class="text-cyan-400 hover:text-cyan-600"><i class="fas fa-ellipsis-v text-xs"></i></button>
+                                </div>
+                                <div class="p-4 space-y-2">
+                                    <div class="text-sm font-medium text-slate-700 mb-2">Pre-process contacts</div>
+                                    <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-5 h-5 bg-green-500 rounded flex items-center justify-center"><i class="fas fa-check text-white" style="font-size:8px"></i></div>
+                                            <span class="text-xs text-slate-700">Email Validation</span>
+                                        </div>
+                                        <span class="text-xs text-green-600 font-medium">ZeroBounce</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-blue-50 rounded-lg border border-blue-200">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-5 h-5 bg-blue-500 rounded flex items-center justify-center"><i class="fas fa-phone text-white" style="font-size:8px"></i></div>
+                                            <span class="text-xs text-slate-700">Phone Append</span>
+                                        </div>
+                                        <span class="text-xs text-blue-600 font-medium">+1 credit</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-purple-50 rounded-lg border border-purple-200">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-5 h-5 bg-purple-500 rounded flex items-center justify-center"><i class="fas fa-building text-white" style="font-size:8px"></i></div>
+                                            <span class="text-xs text-slate-700">Company Data</span>
+                                        </div>
+                                        <span class="text-xs text-purple-600 font-medium">Clearbit</span>
+                                    </div>
+                                    <button class="w-full mt-1 py-1.5 text-xs text-cyan-600 border border-dashed border-cyan-300 rounded-lg hover:bg-cyan-50 transition">
+                                        <i class="fas fa-plus mr-1"></i> Add enrichment step
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex justify-center">
+                                <div class="inline-flex items-center gap-1 text-xs text-slate-500">
+                                    <span class="px-1.5 py-0.5 bg-white rounded border border-slate-200">+phone</span>
+                                    <span class="px-1.5 py-0.5 bg-white rounded border border-slate-200">+company</span>
+                                    <span class="px-1.5 py-0.5 bg-white rounded border border-slate-200">+valid</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 flex items-center self-center mt-12">
+                            <div class="w-8 h-0.5 bg-slate-300"></div>
+                            <i class="fas fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Node 3: Filter / Branch -->
+                        <div class="flex-shrink-0">
+                            <div class="w-64 bg-white rounded-xl border-2 border-amber-400 shadow-sm overflow-hidden">
+                                <div class="px-4 py-2 bg-amber-50 border-b border-amber-100 flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 bg-amber-500 rounded-lg flex items-center justify-center"><i class="fas fa-filter text-white text-xs"></i></div>
+                                        <span class="text-sm font-semibold text-amber-800">Filter</span>
+                                    </div>
+                                    <button class="text-amber-400 hover:text-amber-600"><i class="fas fa-ellipsis-v text-xs"></i></button>
+                                </div>
+                                <div class="p-4">
+                                    <div class="text-sm font-medium text-slate-700 mb-2">Split by Value</div>
+                                    <div class="space-y-2 text-xs">
+                                        <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg border border-green-200">
+                                            <span class="text-slate-600">confidence ≥ 0.8</span>
+                                            <span class="text-green-600 font-medium">→ High</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-2 bg-amber-50 rounded-lg border border-amber-200">
+                                            <span class="text-slate-600">confidence < 0.8</span>
+                                            <span class="text-amber-600 font-medium">→ Normal</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex-shrink-0 flex items-center self-center mt-12">
+                            <div class="w-8 h-0.5 bg-slate-300"></div>
+                            <i class="fas fa-chevron-right text-slate-300 text-xs"></i>
+                        </div>
+
+                        <!-- Node 4: Branched Actions -->
+                        <div class="flex-shrink-0 space-y-4">
+                            <!-- High Value Path -->
+                            <div class="w-72 bg-white rounded-xl border-2 border-purple-400 shadow-sm overflow-hidden">
+                                <div class="px-4 py-2 bg-purple-50 border-b border-purple-100 flex items-center gap-2">
+                                    <div class="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center"><i class="fas fa-paper-plane text-white text-xs"></i></div>
+                                    <span class="text-sm font-semibold text-purple-800">Action: High Value</span>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center"><i class="fas fa-paper-plane text-indigo-600 text-xs"></i></div>
+                                        <div>
+                                            <div class="font-medium text-slate-700">Add to Klaviyo</div>
+                                            <div class="text-xs text-slate-500">List: VIP Prospects</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"><i class="fab fa-salesforce text-blue-600 text-xs"></i></div>
+                                        <div>
+                                            <div class="font-medium text-slate-700">Create in Salesforce</div>
+                                            <div class="text-xs text-slate-500">As: Lead (Hot)</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center"><i class="fab fa-slack text-violet-600 text-xs"></i></div>
+                                        <div>
+                                            <div class="font-medium text-slate-700">Notify #sales-alerts</div>
+                                            <div class="text-xs text-slate-500">High-value lead alert</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Normal Path -->
+                            <div class="w-72 bg-white rounded-xl border-2 border-slate-300 shadow-sm overflow-hidden">
+                                <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 flex items-center gap-2">
+                                    <div class="w-6 h-6 bg-slate-400 rounded-lg flex items-center justify-center"><i class="fas fa-paper-plane text-white text-xs"></i></div>
+                                    <span class="text-sm font-semibold text-slate-600">Action: Normal</span>
+                                </div>
+                                <div class="p-4 space-y-3">
+                                    <div class="flex items-center gap-2 text-sm">
+                                        <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center"><i class="fas fa-paper-plane text-indigo-600 text-xs"></i></div>
+                                        <div>
+                                            <div class="font-medium text-slate-700">Add to Klaviyo</div>
+                                            <div class="text-xs text-slate-500">List: Website Leads</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Workflow Stats Bar -->
+                    <div class="mt-6 flex items-center justify-between bg-white rounded-xl border border-slate-200 p-4">
+                        <div class="flex items-center gap-6">
+                            <div class="text-center">
+                                <p class="text-lg font-bold text-slate-900">12,847</p>
+                                <p class="text-xs text-slate-400">Total processed</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-lg font-bold text-green-600">11,203</p>
+                                <p class="text-xs text-slate-400">Validated</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-lg font-bold text-purple-600">3,421</p>
+                                <p class="text-xs text-slate-400">High value</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-lg font-bold text-slate-600">7,782</p>
+                                <p class="text-xs text-slate-400">Normal</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-lg font-bold text-red-500">1,644</p>
+                                <p class="text-xs text-slate-400">Rejected</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"><i class="fas fa-history mr-1"></i>Run History</button>
+                            <button class="px-3 py-1.5 text-xs border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"><i class="fas fa-play mr-1"></i>Test Run</button>
+                        </div>
+                    </div>
+
+                    <!-- Retry / Error Handling -->
+                    <div class="mt-4 bg-white rounded-xl border border-slate-200 p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <h4 class="text-sm font-semibold text-slate-700">Error Handling & Retries</h4>
+                            <span class="text-xs text-slate-400">Configure per-step</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="p-3 bg-slate-50 rounded-lg">
+                                <p class="text-xs text-slate-500 mb-1">Retry Policy</p>
+                                <select class="w-full text-sm border border-slate-200 rounded px-2 py-1">
+                                    <option>3 retries, exponential backoff</option>
+                                    <option>5 retries, linear</option>
+                                    <option>No retries</option>
+                                </select>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg">
+                                <p class="text-xs text-slate-500 mb-1">On Failure</p>
+                                <select class="w-full text-sm border border-slate-200 rounded px-2 py-1">
+                                    <option>Skip & log</option>
+                                    <option>Halt workflow</option>
+                                    <option>Route to dead letter</option>
+                                </select>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg">
+                                <p class="text-xs text-slate-500 mb-1">Alert On</p>
+                                <select class="w-full text-sm border border-slate-200 rounded px-2 py-1">
+                                    <option>Error rate > 5%</option>
+                                    <option>Any failure</option>
+                                    <option>Never</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
