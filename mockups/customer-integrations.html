@@ -180,78 +180,126 @@
 
         <!-- Available Integrations -->
         <div id="screen-available" class="screen">
-            <div class="grid grid-cols-3 gap-4">
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fab fa-salesforce text-blue-600 text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Salesforce</h3>
-                    <p class="text-sm text-slate-500 mb-4">Sync resolved contacts to Salesforce CRM</p>
-                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
+            <!-- Search -->
+            <div class="mb-6">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" placeholder="Search 2,900+ integrations..." class="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
                 </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fab fa-hubspot text-orange-600 text-xl"></i>
+            </div>
+
+            <!-- Popular Destinations -->
+            <div class="mb-8">
+                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Popular Integrations</h3>
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-paper-plane text-indigo-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Klaviyo</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">HubSpot</h3>
-                    <p class="text-sm text-slate-500 mb-4">Push identities to HubSpot contacts</p>
-                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-leaf text-green-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-envelope text-yellow-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Mailchimp</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">ActiveCampaign</h3>
-                    <p class="text-sm text-slate-500 mb-4">Add resolved visitors as contacts</p>
-                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-envelope text-yellow-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fab fa-hubspot text-orange-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">HubSpot</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Mailchimp</h3>
-                    <p class="text-sm text-slate-500 mb-4">Sync to Mailchimp audiences</p>
-                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-paper-plane text-indigo-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fab fa-salesforce text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Salesforce</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Klaviyo</h3>
-                    <p class="text-sm text-slate-500 mb-4">Send to Klaviyo profiles</p>
-                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-globe text-slate-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-leaf text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">ActiveCampaign</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Webhook</h3>
-                    <p class="text-sm text-slate-500 mb-4">Send JSON payloads to any endpoint</p>
-                    <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">Connected</span>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fas fa-database text-pink-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-red-600 font-bold text-sm">D</span>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Drip</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Segment</h3>
-                    <p class="text-sm text-slate-500 mb-4">Forward to Segment as identify events</p>
-                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
-                </div>
-                <div class="bg-white rounded-xl border border-slate-200 p-6 hover:border-brand-200 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                        <i class="fab fa-shopify text-purple-600 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-table text-emerald-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Google Sheets</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-900 mb-1">Shopify</h3>
-                    <p class="text-sm text-slate-500 mb-4">Enrich Shopify customer profiles</p>
-                    <button class="text-sm text-brand-600 font-medium group-hover:underline">Connect →</button>
-                </div>
-                <div class="bg-white rounded-xl border border-dashed border-slate-300 p-6 flex flex-col items-center justify-center text-center hover:border-brand-300 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-50">
-                        <i class="fas fa-plus text-slate-400 group-hover:text-brand-500 text-xl"></i>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-200 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fab fa-slack text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Slack</h3>
                     </div>
-                    <h3 class="font-semibold text-slate-700 mb-1">Custom Integration</h3>
-                    <p class="text-sm text-slate-400">Use our API to build your own</p>
                 </div>
+            </div>
+
+            <!-- Validate & Enrich — THE MONEY SECTION -->
+            <div class="mb-8">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fas fa-wand-magic-sparkles text-cyan-500"></i>
+                    <h3 class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">Validate & Enrich</h3>
+                </div>
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="bg-gradient-to-br from-cyan-50 to-emerald-50 rounded-xl border border-cyan-200 p-5 hover:border-cyan-400 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-check-double text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Email Verify</h3>
+                        <p class="text-xs text-slate-500 mt-1">Included</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl border border-cyan-200 p-5 hover:border-cyan-400 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-phone text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Phone Append</h3>
+                        <p class="text-xs text-blue-600 mt-1 font-medium">+1 credit</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-cyan-50 to-purple-50 rounded-xl border border-cyan-200 p-5 hover:border-cyan-400 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-building text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Company Data</h3>
+                        <p class="text-xs text-purple-600 mt-1 font-medium">+2 credits</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-cyan-50 to-amber-50 rounded-xl border border-cyan-200 p-5 hover:border-cyan-400 transition cursor-pointer group text-center">
+                        <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-star text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 text-sm">Lead Score</h3>
+                        <p class="text-xs text-amber-600 mt-1 font-medium">+1 credit</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browse by Category -->
+            <div class="mb-6">
+                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Browse Destinations</h3>
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">Email Marketing</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">CRM</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">Analytics</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">E-commerce</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">SMS</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">Advertising</button>
+                    <button class="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-full hover:bg-slate-50 text-slate-600 transition">Webhooks</button>
+                    <button class="px-3 py-1.5 text-sm text-brand-600 font-medium hover:underline">View all →</button>
+                </div>
+            </div>
+
+            <!-- Secure connection note -->
+            <div class="flex items-center gap-2 text-sm text-slate-400 mt-6">
+                <i class="fas fa-shield-alt text-amber-400"></i>
+                <span>Secure OAuth connection. We never see your password.</span>
             </div>
         </div>
 
