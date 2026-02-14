@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segments (B2B Mode) - ID Resolution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .segment-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .segment-card { transition: all 0.2s ease; }
+    .mode-toggle { transition: all 0.2s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Top Nav -->
+  <nav class="bg-white border-b border-gray-200 px-6 py-4">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <div class="flex items-center space-x-8">
+        <span class="text-xl font-bold text-gray-900">ID Resolution</span>
+        
+        <!-- Mode Toggle -->
+        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+          <a href="segments.html" class="mode-toggle px-4 py-1.5 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900">
+            <i class="fas fa-user mr-1.5"></i>B2C
+          </a>
+          <a href="segments-b2b.html" class="mode-toggle px-4 py-1.5 rounded-md text-sm font-medium bg-indigo-600 text-white shadow-sm">
+            <i class="fas fa-building mr-1.5"></i>B2B
+          </a>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-600 hover:text-gray-900">Identities</a>
+          <a href="segments-b2b.html" class="text-indigo-600 font-medium border-b-2 border-indigo-600 pb-1">Segments</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">Integrations</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">Settings</a>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="text-right">
+          <div class="text-sm font-medium text-gray-900">Acme Corp</div>
+          <div class="text-xs text-indigo-600">B2B Mode · 3 credits/identity</div>
+        </div>
+        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+          <span class="text-indigo-600 font-medium text-sm">AC</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">B2B Segments</h1>
+        <p class="text-gray-600 mt-1">Group business visitors and route to your sales & marketing tools</p>
+      </div>
+      <button onclick="openCreateModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center space-x-2">
+        <i class="fas fa-plus"></i>
+        <span>New Segment</span>
+      </button>
+    </div>
+
+    <!-- B2B Enrichment callout -->
+    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-8">
+      <div class="flex items-start space-x-3">
+        <i class="fas fa-building text-indigo-500 mt-0.5"></i>
+        <div class="text-sm text-indigo-800">
+          <strong>B2B Mode:</strong> Personal emails are resolved to business emails. 
+          Each identity includes company name, job title, LinkedIn, and company data.
+          <a href="#" class="underline ml-1">View enrichment fields →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segments Grid -->
+    <div class="grid gap-4">
+      
+      <!-- All B2B Identities (Default) -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-layer-group text-gray-500 text-xl"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h3 class="font-semibold text-gray-900 text-lg">All B2B Identities</h3>
+                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded">Default</span>
+              </div>
+              <p class="text-gray-500 text-sm mt-1">All business visitors with resolved company data</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">6,780</span>
+                <span class="text-gray-500 text-sm">identities</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Webhook</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-500">
+            <i class="fas fa-asterisk mr-1"></i> No filters — all B2B identities
+          </div>
+          <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+            Configure Integrations →
+          </button>
+        </div>
+      </div>
+
+      <!-- Enterprise Accounts -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-crown text-amber-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Enterprise Accounts</h3>
+              <p class="text-gray-500 text-sm mt-1">Companies with 500+ employees</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">892</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 12 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Slack</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            company_size <span class="text-gray-400">>=</span> <span class="text-indigo-600">500</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Makers -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-user-tie text-purple-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Decision Makers</h3>
+              <p class="text-gray-500 text-sm mt-1">VPs, Directors, C-suite</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">1,456</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 28 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">HubSpot</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Outreach</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            job_title <span class="text-gray-400">contains</span> <span class="text-indigo-600">"VP, Director, Chief, Head of"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Industry -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-microchip text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Tech Industry</h3>
+              <p class="text-gray-500 text-sm mt-1">SaaS, software, IT companies</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">2,340</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 45 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Webhook</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            industry <span class="text-gray-400">in</span> <span class="text-indigo-600">"Software, Technology, IT Services"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Page Visitors -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Pricing Page Visitors</h3>
+              <p class="text-gray-500 text-sm mt-1">High-intent visitors who viewed pricing</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">567</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 18 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Slack</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            page_path <span class="text-gray-400">contains</span> <span class="text-indigo-600">"/pricing"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- B2B Fields Available -->
+    <div class="mt-12 bg-white rounded-xl border border-gray-200 p-6">
+      <h3 class="font-semibold text-gray-900 mb-4">B2B Enrichment Fields</h3>
+      <div class="grid grid-cols-4 gap-4 text-sm">
+        <div>
+          <div class="text-gray-500 mb-2 font-medium">Contact</div>
+          <ul class="space-y-1 text-gray-700">
+            <li>• Business email</li>
+            <li>• Full name</li>
+            <li>• Job title</li>
+            <li>• LinkedIn URL</li>
+            <li>• Phone (direct)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-gray-500 mb-2 font-medium">Company</div>
+          <ul class="space-y-1 text-gray-700">
+            <li>• Company name</li>
+            <li>• Domain</li>
+            <li>• Industry</li>
+            <li>• Company size</li>
+            <li>• Revenue range</li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-gray-500 mb-2 font-medium">Firmographics</div>
+          <ul class="space-y-1 text-gray-700">
+            <li>• HQ location</li>
+            <li>• Year founded</li>
+            <li>• Funding stage</li>
+            <li>• Tech stack</li>
+            <li>• LinkedIn company</li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-gray-500 mb-2 font-medium">Signals</div>
+          <ul class="space-y-1 text-gray-700">
+            <li>• Pages viewed</li>
+            <li>• Time on site</li>
+            <li>• Visit count</li>
+            <li>• Source/campaign</li>
+            <li>• Intent score</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Create Segment Modal (same as B2C but with B2B fields) -->
+  <div id="createModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-xl mx-4">
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-900">Create B2B Segment</h2>
+          <button onclick="closeCreateModal()" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <!-- Segment Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Segment Name</label>
+          <input type="text" placeholder="e.g., Enterprise Accounts, Tech Industry" 
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+
+        <!-- Rules -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-3">Filter identities where...</label>
+          
+          <!-- Rule 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <select class="border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 text-sm">
+                <optgroup label="Company">
+                  <option>company_name</option>
+                  <option>company_size</option>
+                  <option>industry</option>
+                  <option>revenue_range</option>
+                  <option>tech_stack</option>
+                </optgroup>
+                <optgroup label="Contact">
+                  <option>job_title</option>
+                  <option>seniority</option>
+                  <option>department</option>
+                  <option>business_email</option>
+                </optgroup>
+                <optgroup label="Traffic">
+                  <option>source_domain</option>
+                  <option>page_path</option>
+                  <option>page_url</option>
+                </optgroup>
+                <optgroup label="Location">
+                  <option>company_hq_country</option>
+                  <option>company_hq_state</option>
+                </optgroup>
+              </select>
+              <select class="border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 text-sm">
+                <option>=</option>
+                <option>≠</option>
+                <option>contains</option>
+                <option>>=</option>
+                <option><=</option>
+                <option>in list</option>
+              </select>
+              <input type="text" placeholder="value" 
+                     class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 text-sm">
+            </div>
+            
+            <div class="mt-3 flex items-center space-x-2">
+              <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium flex items-center space-x-1">
+                <i class="fas fa-plus text-xs"></i>
+                <span>AND</span>
+              </button>
+              <span class="text-gray-300">|</span>
+              <button class="text-gray-500 hover:text-gray-700 text-sm flex items-center space-x-1">
+                <i class="fas fa-plus text-xs"></i>
+                <span>OR</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-indigo-50 rounded-lg p-4 border border-indigo-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-search text-indigo-400"></i>
+              <span class="text-sm text-indigo-700">Matching identities:</span>
+            </div>
+            <span class="text-xl font-bold text-indigo-700">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100 flex justify-end space-x-3">
+        <button onclick="closeCreateModal()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+          Cancel
+        </button>
+        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+          Create Segment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openCreateModal() {
+      document.getElementById('createModal').classList.remove('hidden');
+      document.getElementById('createModal').classList.add('flex');
+    }
+    
+    function closeCreateModal() {
+      document.getElementById('createModal').classList.add('hidden');
+      document.getElementById('createModal').classList.remove('flex');
+    }
+  </script>
+</body>
+</html>

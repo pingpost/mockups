@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segments - ID Resolution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .segment-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .segment-card { transition: all 0.2s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Top Nav -->
+  <nav class="bg-white border-b border-gray-200 px-6 py-4">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <div class="flex items-center space-x-8">
+        <span class="text-xl font-bold text-gray-900">ID Resolution</span>
+        
+        <!-- Mode Toggle -->
+        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+          <a href="segments.html" class="px-4 py-1.5 rounded-md text-sm font-medium bg-indigo-600 text-white shadow-sm">
+            <i class="fas fa-user mr-1.5"></i>B2C
+          </a>
+          <a href="segments-b2b.html" class="px-4 py-1.5 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900">
+            <i class="fas fa-building mr-1.5"></i>B2B
+          </a>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="resolved-identities.html" class="text-gray-600 hover:text-gray-900">Identities</a>
+          <a href="segments.html" class="text-indigo-600 font-medium border-b-2 border-indigo-600 pb-1">Segments</a>
+          <a href="integrations.html" class="text-gray-600 hover:text-gray-900">Integrations</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">Settings</a>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="text-right">
+          <div class="text-sm font-medium text-gray-900">Acme Corp</div>
+          <div class="text-xs text-green-600">B2C Mode · 1 credit/identity</div>
+        </div>
+        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+          <span class="text-indigo-600 font-medium text-sm">AC</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">B2C Segments</h1>
+        <p class="text-gray-600 mt-1">Group consumer leads by source, geo, or any incoming field</p>
+      </div>
+      <button onclick="openCreateModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition flex items-center space-x-2">
+        <i class="fas fa-plus"></i>
+        <span>New Segment</span>
+      </button>
+    </div>
+
+    <!-- B2C Mode callout -->
+    <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
+      <div class="flex items-start space-x-3">
+        <i class="fas fa-user text-green-500 mt-0.5"></i>
+        <div class="text-sm text-green-800">
+          <strong>B2C Mode:</strong> Optimized for consumer leads — personal email, phone, home address.
+          Filter by source, geo, device, or custom properties. 
+          <a href="segments-b2b.html" class="underline ml-1">Switch to B2B for business data →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segments Grid -->
+    <div class="grid gap-4">
+      
+      <!-- All Identities (Default) -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-layer-group text-gray-500 text-xl"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <h3 class="font-semibold text-gray-900 text-lg">All Identities</h3>
+                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded">Default</span>
+              </div>
+              <p class="text-gray-500 text-sm mt-1">Every resolved identity — your catch-all segment</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">45,230</span>
+                <span class="text-gray-500 text-sm">identities</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Klaviyo</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Webhook</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-500">
+            <i class="fas fa-asterisk mr-1"></i> No filters — includes everything
+          </div>
+          <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+            Configure Integrations →
+          </button>
+        </div>
+      </div>
+
+      <!-- Source Domain Segment -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-globe text-indigo-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Main Site Traffic</h3>
+              <p class="text-gray-500 text-sm mt-1">Visitors from acme.com</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">28,450</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 542 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Klaviyo</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Meta CAPI</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            source_domain <span class="text-gray-400">=</span> <span class="text-indigo-600">"acme.com"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- California Visitors -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-map-marker-alt text-amber-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">California Visitors</h3>
+              <p class="text-gray-500 text-sm mt-1">Identities geolocated to CA</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">8,920</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 156 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Webhook</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            ip_region_code <span class="text-gray-400">=</span> <span class="text-indigo-600">"CA"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Visitors -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-mobile-alt text-green-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Mobile Visitors</h3>
+              <p class="text-gray-500 text-sm mt-1">Phone and tablet traffic</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">18,340</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 312 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Klaviyo</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            user_agent_mobile <span class="text-gray-400">=</span> <span class="text-indigo-600">true</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facebook Traffic -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="fab fa-facebook text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Facebook Traffic</h3>
+              <p class="text-gray-500 text-sm mt-1">Visitors from Facebook ads</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">12,650</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 342 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Meta CAPI</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Klaviyo</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            page_url <span class="text-gray-400">contains</span> <span class="text-indigo-600">"fbclid"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campaign 123 (Custom Property) -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-bullseye text-purple-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Spring Campaign</h3>
+              <p class="text-gray-500 text-sm mt-1">Traffic with campaign ID 12345</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">3,450</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 89 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Meta CAPI</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Google Ads</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            properties.cid <span class="text-gray-400">=</span> <span class="text-indigo-600">"12345"</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- B2B Emails (email domain based) -->
+      <div class="segment-card bg-white rounded-xl border border-gray-200 p-6">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-building text-blue-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">B2B Prospects</h3>
+              <p class="text-gray-500 text-sm mt-1">Non-personal email domains (likely business)</p>
+              <div class="flex items-center space-x-4 mt-3">
+                <span class="text-2xl font-bold text-gray-900">6,780</span>
+                <span class="text-gray-500 text-sm">identities</span>
+                <span class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> 67 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-sm text-gray-500 mb-2">Active integrations</div>
+            <div class="flex space-x-2 justify-end">
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Salesforce</span>
+              <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">Slack</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="text-sm text-gray-600 font-mono bg-gray-50 px-3 py-1 rounded">
+            email_domain <span class="text-gray-400">not in</span> <span class="text-indigo-600">"gmail.com, yahoo.com, hotmail.com, ..."</span>
+          </div>
+          <div class="flex space-x-3">
+            <button class="text-gray-500 hover:text-gray-700 text-sm">
+              <i class="fas fa-edit mr-1"></i> Edit
+            </button>
+            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+              Configure Integrations →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Create Segment Modal -->
+  <div id="createModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-xl mx-4">
+      <div class="p-6 border-b border-gray-100">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-900">Create Segment</h2>
+          <button onclick="closeCreateModal()" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <!-- Segment Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Segment Name</label>
+          <input type="text" placeholder="e.g., California Mobile, Campaign 12345" 
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+
+        <!-- Rules -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-3">Filter identities where...</label>
+          
+          <!-- Rule 1 -->
+          <div class="bg-gray-50 rounded-lg p-4">
+            <div class="flex items-center space-x-2">
+              <select class="border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 text-sm">
+                <optgroup label="Traffic">
+                  <option>source_domain</option>
+                  <option>page_url</option>
+                  <option>page_path</option>
+                  <option>page_referrer</option>
+                  <option>page_search</option>
+                </optgroup>
+                <optgroup label="Geo (IP-based)">
+                  <option>ip_region_code</option>
+                  <option>ip_country_code</option>
+                  <option>ip_city</option>
+                  <option>ip_postal_code</option>
+                </optgroup>
+                <optgroup label="Device">
+                  <option>user_agent_mobile</option>
+                  <option>user_agent_platform</option>
+                  <option>user_agent_browser</option>
+                  <option>user_agent_device</option>
+                </optgroup>
+                <optgroup label="Identity">
+                  <option>email_domain</option>
+                  <option>region_code</option>
+                  <option>city</option>
+                  <option>postal_code</option>
+                </optgroup>
+                <optgroup label="Custom Properties">
+                  <option>properties.cid</option>
+                  <option>properties.source_id</option>
+                  <option>properties.click_id</option>
+                </optgroup>
+              </select>
+              <select class="border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-indigo-500 text-sm">
+                <option>=</option>
+                <option>≠</option>
+                <option>contains</option>
+                <option>starts with</option>
+                <option>in list</option>
+                <option>not in list</option>
+                <option>exists</option>
+                <option>does not exist</option>
+              </select>
+              <input type="text" placeholder="value" 
+                     class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 text-sm">
+            </div>
+            
+            <!-- Add condition -->
+            <div class="mt-3 flex items-center space-x-2">
+              <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium flex items-center space-x-1">
+                <i class="fas fa-plus text-xs"></i>
+                <span>AND</span>
+              </button>
+              <span class="text-gray-300">|</span>
+              <button class="text-gray-500 hover:text-gray-700 text-sm flex items-center space-x-1">
+                <i class="fas fa-plus text-xs"></i>
+                <span>OR</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="bg-indigo-50 rounded-lg p-4 border border-indigo-100">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-search text-indigo-400"></i>
+              <span class="text-sm text-indigo-700">Matching identities:</span>
+            </div>
+            <span class="text-xl font-bold text-indigo-700">—</span>
+          </div>
+          <p class="text-xs text-indigo-500 mt-1">Start typing to see how many existing identities match</p>
+        </div>
+      </div>
+
+      <div class="p-6 border-t border-gray-100 flex justify-end space-x-3">
+        <button onclick="closeCreateModal()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+          Cancel
+        </button>
+        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+          Create Segment
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openCreateModal() {
+      document.getElementById('createModal').classList.remove('hidden');
+      document.getElementById('createModal').classList.add('flex');
+    }
+    
+    function closeCreateModal() {
+      document.getElementById('createModal').classList.add('hidden');
+      document.getElementById('createModal').classList.remove('flex');
+    }
+  </script>
+</body>
+</html>
